@@ -1,8 +1,9 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
+using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Web.Http;
+using Microsoft.Owin;
+using Swashbuckle.Application;
 
 [assembly: OwinStartup(typeof(quick.Startup))]
 
@@ -12,7 +13,10 @@ namespace quick
     {
         public void Configuration(IAppBuilder app)
         {
-            GlobalConfiguration.Configure(config => {                
+            
+
+            GlobalConfiguration.Configure(config => {
+                config.MapHttpAttributeRoutes();
                 var jSettings = new JsonSerializerSettings();
                 jSettings.Formatting = Formatting.Indented;
                 jSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

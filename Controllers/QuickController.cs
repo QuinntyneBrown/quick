@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using quick.Dtos;
+using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace quick.Controllers
 {
@@ -6,9 +8,11 @@ namespace quick.Controllers
     public class QuickController : ApiController
     {
         [Route("get")]
+        [HttpGet]
+        [ResponseType(typeof(QuickDto))]
         public IHttpActionResult Get()
         {
-            return Ok(new { Name = "Quick" });
+            return Ok(new QuickDto() { Message = "Quick Message" });
         }
     }
 }
